@@ -67,7 +67,7 @@ class ParagraphHandler:
             modified_sentence = sentence.strip().split(" ")
             sentence_lenght = len(modified_sentence)
             counter += 1
-            sentence_in_str = paragraph_handler.get_string_from_list(sentence)
+            sentence_in_str = ParagraphHandler.get_string_from_list(sentence)
             sentences_information[f"sentence_{str(counter)}"] = {
                 "sentence": f"{sentence_in_str}",
                 "lenght_in_words": sentence_lenght,
@@ -100,22 +100,22 @@ class ParagraphHandler:
 
     @staticmethod
     def get_paragraph_with_every_secound_letter_captalized(paragraph: str) -> str:
-        words_list = paragraph_handler.get_word_list_with_lowered_letters(paragraph)
+        words_list = ParagraphHandler.get_word_list_with_lowered_letters(paragraph)
         converted_paragraph = ""
         for word in words_list:
             converted_paragraph += (
-                paragraph_handler.get_word_with_every_secound_letter_capitalized(word)
+                ParagraphHandler.get_word_with_every_secound_letter_capitalized(word)
                 + " "
             )
         return converted_paragraph
 
     @staticmethod
     def get_reversed_paragraph(paragraph: str) -> str:
-        sentences_list = paragraph_handler.get_list_of_sentences(paragraph)
+        sentences_list = ParagraphHandler.get_list_of_sentences(paragraph)
         reversed_paragraph_list = []
         for sentence in sentences_list:
             striped_sentence = sentence.strip()
-            reversed_sentence = paragraph_handler.get_list_of_words_from_sentence(
+            reversed_sentence = ParagraphHandler.get_list_of_words_from_sentence(
                 striped_sentence
             )
             reversed_sentence.reverse()
@@ -133,26 +133,25 @@ class ParagraphHandler:
 
 
 if __name__ == "__main__":
-    paragraph_handler = ParagraphHandler()
-    string_without_punctuation = paragraph_handler.get_string_without_punctuation(
+    string_without_punctuation = ParagraphHandler.get_string_without_punctuation(
         "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is."
     )
-    list_of_strings_in_lower = paragraph_handler.get_word_list_with_lowered_letters(
+    list_of_strings_in_lower = ParagraphHandler.get_word_list_with_lowered_letters(
         string_without_punctuation
     )
-    words_counter = paragraph_handler.get_unique_words_count(list_of_strings_in_lower)
+    words_counter = ParagraphHandler.get_unique_words_count(list_of_strings_in_lower)
     print(f"Here are listed all words with it count in paragraph:\n {words_counter}\n")
     print("The top three most used words are:")
-    words_list = paragraph_handler.get_three_most_used_words(words_counter)
+    words_list = ParagraphHandler.get_three_most_used_words(words_counter)
     for word in words_list:
         print(word)
-    list_of_strings = paragraph_handler.get_list_of_sentences(
+    list_of_strings = ParagraphHandler.get_list_of_sentences(
         "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is."
     )
-    sentences_information = paragraph_handler.get_calculated_word_count_and_sentence(
+    sentences_information = ParagraphHandler.get_calculated_word_count_and_sentence(
         list_of_strings
     )
-    shortest_sentence = paragraph_handler.get_shortest_sentence_and_words_count(
+    shortest_sentence = ParagraphHandler.get_shortest_sentence_and_words_count(
         sentences_information
     )
     print(
@@ -162,7 +161,7 @@ if __name__ == "__main__":
         "\nHere is the paragraph in which the first and every other letter from every word is capitalized:"
     )
     print(
-        paragraph_handler.get_paragraph_with_every_secound_letter_captalized(
+        ParagraphHandler.get_paragraph_with_every_secound_letter_captalized(
             "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is."
         )
     )
@@ -170,7 +169,7 @@ if __name__ == "__main__":
         "\nHere is a version of the paragraph in which all words are in reversed order:"
     )
     print(
-        paragraph_handler.get_reversed_paragraph(
+        ParagraphHandler.get_reversed_paragraph(
             "The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ in their grammar, their pronunciation and their most common words. Everyone realizes why a new common language would be desirable: one could refuse to pay expensive translators. To achieve this, it would be necessary to have uniform grammar, pronunciation and more common words. If several languages coalesce, the grammar of the resulting language is more simple and regular than that of the individual languages. The new common language will be more simple and regular than the existing European languages. It will be as simple as Occidental; in fact, it will be Occidental. To an English person, it will seem like simplified English, as a skeptical Cambridge friend of mine told me what Occidental is."
         )
     )
